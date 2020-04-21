@@ -1,8 +1,8 @@
-import { SET_SELECTED_OPTION } from "./actionTypes";
+import { SET_SELECTED_OPTIONS } from "./actionTypes";
 
-export const setSelectedOption = (payload) => {
+export const setSelectedOptions = (payload) => {
 	return {
-		type: SET_SELECTED_OPTION,
+		type: SET_SELECTED_OPTIONS,
 		payload
 	}
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedOption } from './actions/actionCreators';
+import { setSelectedOptions } from './actions/actionCreators';
 import { Layout, Select, Modal } from 'antd';
 import { options } from './constants';
 import 'antd/dist/antd.css';
@@ -14,10 +14,10 @@ let timer = null;
 const App = memo(() => {
 	const dispatch = useDispatch();
 	const [showModal, setShowModal] = useState(false);
-	const selectedOption = useSelector((state) => state.dropDown.selectedOption);
+	const selectedOptions = useSelector((state) => state.dropDown.selectedOptions);
 
 	const onChange = (value) => {
-		dispatch(setSelectedOption(value));
+		dispatch(setSelectedOptions(value));
 	};
 
 	const handleClose = () => {
@@ -29,28 +29,25 @@ const App = memo(() => {
 	};
 
 	useEffect(() => {
-		if (!selectedOption) return;
+		if (!selectedOptions.length) return;
 
 		if (timer) {
 			clearTimeout(timer);
 		}
 
-		timer = setTimeout(() => {
-			setShowModal(true);
-		}, 5000);
+		timer = setTimeout(() => setShowModal(true), 5000);
 
-		return () => {
-			clearTimeout(timer)
-		};
+		return () => clearTimeout(timer);
 
-	}, [selectedOption]);
+	}, [selectedOptions.length]);
 
 	return (
 		<Layout>
 			<Content>
 				<Select
+					mode="multiple"
+					style={{ minWidth: '400px' }}
 					showSearch
-					style={{ width: 200 }}
 					placeholder="Select a person"
 					optionFilterProp="children"
 					onSearch={onSearch}
@@ -59,12 +56,12 @@ const App = memo(() => {
 					{options.map((option) => <Option key={option.value} value={option.value}>{option.label}</Option>)}
 				</Select>
 				<Modal
-					title="Show Selected Option"
+					title="Show Selected Options"
 					visible={showModal}
 					onCancel={handleClose}
 					footer={false}
 				>
-					<p>{selectedOption}</p>
+					<p>{selectedOptions.join(' ')}</p>
 				</Modal>
 			</Content>
 		</Layout>

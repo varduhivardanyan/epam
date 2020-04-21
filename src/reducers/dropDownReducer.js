@@ -1,14 +1,14 @@
-import { SET_SELECTED_OPTION } from "../actions/actionTypes";
+import { SET_SELECTED_OPTIONS } from "../actions/actionTypes";
 
 const initialState = {
-	selectedOption: ''
+	selectedOptions: []
 };
 
 export const dropDownReducer = (state = initialState, action) => {
-	if (action.type === SET_SELECTED_OPTION) {
+	if (action.type === SET_SELECTED_OPTIONS) {
 		return {
 			...state,
-			selectedOption: action.payload
+			selectedOptions: action.payload
 		};
 	}
 
