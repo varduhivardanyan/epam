@@ -37,9 +37,13 @@
 	}
 }
 
+.ant-page-header-heading {
+	display: flex;
+	justify-content: center;
+}
+
 .ant-layout-content {
 	display: flex;
 	justify-content: center;
-	align-items: center;
 	height: 100vh;
 }

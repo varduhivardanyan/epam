@@ -1,7 +1,7 @@
 import React, { useEffect, useState, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedOptions } from './actions/actionCreators';
-import { Layout, Select, Modal } from 'antd';
+import { Layout, Select, Modal, PageHeader } from 'antd';
 import { options } from './constants';
 import 'antd/dist/antd.css';
 import './App.css';
@@ -43,6 +43,7 @@ const App = memo(() => {
 
 	return (
 		<Layout>
+			<PageHeader title="Select Box with Ant Design library"/>
 			<Content>
 				<Select
 					mode="multiple"
